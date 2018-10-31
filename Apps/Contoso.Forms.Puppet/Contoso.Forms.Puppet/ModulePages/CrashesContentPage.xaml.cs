@@ -15,6 +15,17 @@ namespace Contoso.Forms.Puppet
     {
     }
 
+    public class ByZeroDivider
+    {
+        public void DivideByZero()
+        {
+            /* This is supposed to cause a crash, so we don't care that the variable 'x' is never used */
+#pragma warning disable CS0219
+            (42 / (int.Parse("0"))).ToString();
+#pragma warning restore CS0219
+        }
+    }
+
     [Android.Runtime.Preserve(AllMembers = true)]
     public partial class CrashesContentPage
     {
@@ -140,10 +151,8 @@ namespace Contoso.Forms.Puppet
 
         void DivideByZero(object sender, EventArgs e)
         {
-            /* This is supposed to cause a crash, so we don't care that the variable 'x' is never used */
-#pragma warning disable CS0219
-            HandleOrThrow(() => (42 / int.Parse("0")).ToString());
-#pragma warning restore CS0219
+            ByZeroDivider divider = new ByZeroDivider();
+            divider.DivideByZero();
         }
 
         void CatchNullReferenceException(object sender, EventArgs e)

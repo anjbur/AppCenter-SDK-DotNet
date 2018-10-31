@@ -71,7 +71,7 @@ namespace Contoso.Android.Puppet
 
             Push.PushNotificationReceived += PrintNotification;
 
-            AppCenter.Start("bff0949b-7970-439d-9745-92cdc59b10fe", typeof(Analytics), typeof(Crashes),
+            AppCenter.Start("672c3921-38fd-4419-af66-bd0e90ac867c", typeof(Analytics), typeof(Crashes),
                             typeof(Push), typeof(Distribute));
 
             AppCenter.IsEnabledAsync().ContinueWith(enabled =>
